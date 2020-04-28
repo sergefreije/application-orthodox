@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Orthodox Music App</string>
+    <string name="title_activity_login">تسجيل الدخول</string>
+    <string name="prompt_email">البريد الإلكتروني</string>
+    <string name="prompt_password">كلمه السر</string>
+    <string name="action_sign_in">تسجيل الدخول أو التسجيل</string>
+    <string name="action_sign_in_short">تسجيل الدخول</string>
+    <string name="welcome">"أهلا بك !"</string>
+    <string name="invalid_username">إن لإسم المستخدم غير صالح</string>
+    <string name="invalid_password">يجب أن تكون كلمة المرور المستخدمة أكبر من الأحرف</string>
+    <string name="login_failed">"فشل تسجيل الدخول"</string>
+    <string name="open">افتح</string>
+    <string name="close">أغلق</string>
+</resources>
