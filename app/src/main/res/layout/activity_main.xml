@@ -12,16 +12,51 @@
         android:layout_width="match_parent"
         layout = "@layout/content_main"/>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header"
-        android:fitsSystemWindows="true"
-        android:layout_gravity = "start"/>
+
+    <ImageView
+        android:id="@+id/clover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="280dp"
+        android:elevation="30dp"
+        android:src="@drawable/cross"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
+    <LinearLayout
+        android:id="@+id/textsplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:text="Welcome Back"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/activity_main_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:hint="Name"
+            android:textColor="#FFF"
+            android:textSize="24sp" />
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/texthome"
         android:layout_width="wrap_content"
@@ -65,7 +100,7 @@
 
 
                 <Button
-                    android:id="@+id/imageButton1"
+                    android:id="@+id/VideoBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="4dp"
@@ -166,7 +201,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/bugcon"
+                    android:background="@drawable/cover"
                     android:clickable="true" />
 
                 <TextView
@@ -186,5 +221,24 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/bgapp"
+        android:layout_width="526dp"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bgappy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header"
+        android:fitsSystemWindows="true"
+        android:layout_gravity = "start"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

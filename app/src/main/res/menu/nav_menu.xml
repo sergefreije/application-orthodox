@@ -3,10 +3,10 @@
     <item android:title="General">
         <menu>
             <item
-                android:id="@+id/Profile"
+                android:id="@+id/UserProfile"
                 android:title="Profile"></item>
             <item
-                android:id="@+id/Languages"
+                android:id="@+id/UserLanguages"
                 android:title="Languages" />
         </menu>
 
