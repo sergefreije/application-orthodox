@@ -62,8 +62,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         questionList = new ArrayList<>();
 
-        setNo = getIntent().getIntExtra("SETNO",1);
+        setNo = getIntent().getIntExtra("SETNO", 1);
         firestore = FirebaseFirestore.getInstance();
+
+        Intent LessonMain = new Intent(QuestionActivity.this, LessonMainActivity.class);
+        startActivity(LessonMain);
 
         getQuestionsList();
 
@@ -74,53 +77,54 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private void getQuestionsList() {
         questionList.clear();
 
-        firestore.collection("ArabicVersion").document("LEVEL 1").collection("Lesson1")
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+        //if (LanguageVersion != null & UserLevel != null) {
+        firestore.collection("Arabic").document("Level 1").collection("Lesson" + String.valueOf(setNo))
+                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
+                    Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
 
-                        for(QueryDocumentSnapshot doc : queryDocumentSnapshots)
-                        {
-                            docList.put(doc.getId(),doc);
-                        }
-                        QueryDocumentSnapshot quesListDoc  = docList.get("QUESTIONS_LIST");
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        docList.put(doc.getId(), doc);
+                    }
+                    QueryDocumentSnapshot quesListDoc = docList.get("QUESTIONS_LIST");
 
-                        assert quesListDoc != null;
-                        String count = quesListDoc.getString("COUNT");
+                    assert quesListDoc != null;
+                    String count = quesListDoc.getString("COUNT");
 
-                        assert count != null;
-                        for(int i = 0; i < Integer.parseInt(count); i++)
-                        {
-                            String quesID = quesListDoc.getString("Question" + String.valueOf(i+1));
+                    assert count != null;
+                    for (int i = 0; i < Integer.parseInt(count); i++) {
+                        String quesID = ("Question" + (i + 1));
 
-                            QueryDocumentSnapshot quesDoc = docList.get(quesID);
+                        QueryDocumentSnapshot quesDoc = docList.get(quesID);
 
-                            questionList.add(new Question(
-                                    quesDoc.getString("QUESTION"),
-                                    quesDoc.getString("A"),
-                                    quesDoc.getString("B"),
-                                    quesDoc.getString("C"),
-                                    quesDoc.getString("D"),
-                                    Integer.parseInt(Objects.requireNonNull(quesDoc.getString("ANSWER")))
-                            ));
-
-                        }
-
-                        setQuestion();
+                        assert quesDoc != null;
+                        questionList.add(new Question(
+                                quesDoc.getString("QUESTION"),
+                                quesDoc.getString("A"),
+                                quesDoc.getString("B"),
+                                quesDoc.getString("C"),
+                                quesDoc.getString("D"),
+                                Integer.parseInt(Objects.requireNonNull(quesDoc.getString("ANSWER")))
+                        ));
 
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(QuestionActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                    setQuestion();
 
-    }
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(QuestionActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+        }
+  //  }
+
 
 
     private void setQuestion()
@@ -134,33 +138,13 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         option4.setText(questionList.get(0).getOptionD());
 
 
-        qCount.setText(String.valueOf(1) + "/" + String.valueOf(questionList.size()));
+        qCount.setText((1) + "/" + (questionList.size()));
 
-        startTimer();
+
 
         quesNum = 0;
 
     }
-
-    private void startTimer()
-    {
-        countDown = new CountDownTimer(12000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                if(millisUntilFinished < 10000)
-                    timer.setText(String.valueOf(millisUntilFinished / 1000));
-            }
-
-            @Override
-            public void onFinish() {
-                changeQuestion();
-            }
-        };
-
-        countDown.start();
-
-    }
-
 
 
     @Override
@@ -189,7 +173,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             default:
         }
 
-        countDown.cancel();
         checkAnswer(selectedOption, v);
 
     }
@@ -255,8 +238,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
             qCount.setText(String.valueOf(quesNum+1) + "/" + String.valueOf(questionList.size()));
 
-            timer.setText(String.valueOf(10));
-            startTimer();
 
         }
         else
@@ -336,6 +317,5 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     public void onBackPressed() {
         super.onBackPressed();
 
-        countDown.cancel();
     }
 }

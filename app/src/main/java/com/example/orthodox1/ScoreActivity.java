@@ -30,7 +30,7 @@ public class ScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
+                Intent intent = new Intent(ScoreActivity.this,LessonsList.class);
                 ScoreActivity.this.startActivity(intent);
                 ScoreActivity.this.finish();
 

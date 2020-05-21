@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.github.markushi:circlebutton:1.1'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation files('libs\\YouTubeAndroidPlayerApi.jar')
 }

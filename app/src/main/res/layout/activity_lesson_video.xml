@@ -7,30 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".LessonVideo">
 
-    <VideoView
-        android:id="@+id/videoView1"
+    <com.google.android.youtube.player.YouTubePlayerView
         android:layout_width="match_parent"
-        android:layout_height="302dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="wrap_content"
+        android:id="@+id/mPlayer"
+        />
 
     <Button
         android:id="@+id/Next"
         android:layout_width="wrap_content"
         android:layout_height="82dp"
-        android:layout_below="@+id/videoView1"
+        android:layout_below="@+id/mPlayer"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="251dp"
-        android:layout_marginTop="327dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="20dp"
-        android:text="Next" />
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="217dp"
+        android:layout_marginEnd="114dp"
+        android:layout_marginBottom="413dp"
+        android:text="Next"
+        tools:visibility="visible" />
 
 
 </RelativeLayout>
