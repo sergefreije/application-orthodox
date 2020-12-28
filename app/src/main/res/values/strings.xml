@@ -1,16 +1,25 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Orthodox Music App</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
+    <string name="title_activity_login" translatable="false">Sign in</string>
+    <string name="prompt_email" tools:ignore="MissingTranslation">Email</string>
+    <string name="prompt_password" tools:ignore="MissingTranslation">Password</string>
+    <string name="action_sign_in" translatable="false">Sign in or register</string>
+    <string name="action_sign_in_short" tools:ignore="MissingTranslation">Sign in</string>
+    <string name="welcome" tools:ignore="MissingTranslation">"Welcome !"</string>
+    <string name="invalid_username" tools:ignore="MissingTranslation">Not a valid username</string>
+    <string name="invalid_password" tools:ignore="MissingTranslation">Password must be >5 characters</string>
+    <string name="login_failed" tools:ignore="MissingTranslation">"Login failed"</string>
+    <string name="open" tools:ignore="MissingTranslation">open</string>
+    <string name="close" tools:ignore="MissingTranslation">close</string>
+    <string name="next" tools:ignore="MissingTranslation">Next</string>
+    <string name="_1" tools:ignore="MissingTranslation">1</string>
+    <string name="books" tools:ignore="MissingTranslation">Books</string>
+    <string name="welcome_back" tools:ignore="MissingTranslation">Welcome Back</string>
+    <string name="name" tools:ignore="MissingTranslation">Name</string>
+    <string name="reports" tools:ignore="MissingTranslation">Reports</string>
+    <string name="videos" tools:ignore="MissingTranslation">Videos</string>
+    <string name="bells" tools:ignore="MissingTranslation">Bells</string>
+    <string name="todo" tools:ignore="MissingTranslation">TODO</string>
 
     <string-array name="spinner_items">
         <item>Arabic</item>

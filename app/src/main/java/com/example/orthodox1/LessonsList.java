@@ -20,22 +20,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class LessonsList extends AppCompatActivity {
-    //Button btn1;
-    //  @Override
-    //protected void onCreate(Bundle savedInstanceState) {
-    //super.onCreate(savedInstanceState);
-    //setContentView(R.layout.activity_lessons_list);
-    //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    //btn1 = findViewById(R.id.floatingActionButton1);
-    //btn1.setOnClickListener(new View.OnClickListener() {
-    // @Override
-    // public void onClick(View v) {
-    //    Intent LessonContent = new Intent(LessonsList.this, LessonMainActivity.class);
-    //    startActivity(LessonContent);
-    //  }
-    //});
-    // }
-//}
 
 
     private GridView sets_grid;
@@ -68,12 +52,10 @@ public class LessonsList extends AppCompatActivity {
 
                     long noOfLessons = (long) documentSnapshot.get("Lessons");
                     for (int i = 1; i <= noOfLessons; i++) {
-                        setsIDs.add(documentSnapshot.getString("Lesson" + String.valueOf(i)));
+                        setsIDs.add(documentSnapshot.getString("Lesson" + i));
                     }
-
                     SetsAdapter adapter = new SetsAdapter(setsIDs.size());
                     sets_grid.setAdapter(adapter);
-
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
@@ -89,8 +71,7 @@ public class LessonsList extends AppCompatActivity {
 
     @Override
         public boolean onOptionsItemSelected (MenuItem item){
-
-            if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
                 LessonsList.this.finish();
             }
             return super.onOptionsItemSelected(item);

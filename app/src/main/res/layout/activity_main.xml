@@ -2,15 +2,16 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:id="@+id/drawer">
+    android:background="#D1BC8A"
+    tools:context=".MainActivity">
 
     <include
-        android:layout_height="match_parent"
+        layout="@layout/content_main"
         android:layout_width="match_parent"
-        layout = "@layout/content_main"/>
+        android:layout_height="match_parent" />
 
 
     <ImageView
@@ -18,12 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="280dp"
+        android:contentDescription="@string/todo"
         android:elevation="30dp"
         android:src="@drawable/cross"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
     <LinearLayout
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aclonica"
-            android:text="Welcome Back"
+            android:text="@string/welcome_back"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="24sp" />
@@ -52,11 +52,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aclonica"
-            android:hint="Name"
+            android:hint="@string/name"
             android:textColor="#FFF"
             android:textSize="24sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/texthome"
         android:layout_width="wrap_content"
@@ -67,7 +68,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -84,147 +84,107 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginBottom="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:background="@color/bloody"
+            android:fadingEdge="horizontal|vertical"
+            android:fadingEdgeLength="10dp"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/VideoBtn"
+                android:layout_width="173dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/cover"
+                android:clickable="true"
+                android:focusable="true" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <Button
-                    android:id="@+id/VideoBtn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@android:drawable/ic_media_play"
-                    android:clickable="true"
-                    android:onClick="message"
-                    android:src="@drawable/biton"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/aclonica"
-                    android:text="Videos"
-                    android:textColor="#0E1843"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <Button
-                    android:id="@+id/imageButton"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/bellcon"
-                    android:clickable="true"
-                    android:src="@drawable/cover"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/aclonica"
-                    android:text="Bells"
-                    android:textColor="#0E1843"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-
+            <TextView
+                android:layout_width="237dp"
+                android:layout_height="97dp"
+                android:fontFamily="@font/aclonica"
+                android:text="Theory &amp; Exercises"
+                android:textAlignment="center"
+                android:textColor="#0E1843"
+                android:textSize="30dp" />
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <LinearLayout
-            android:layout_width="309dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
-            android:layout_marginBottom="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:background="@color/bloody"
+            android:fadingEdge="horizontal|vertical"
+            android:fadingEdgeLength="10dp"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/VideoBtn2"
+                android:layout_width="173dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/cover"
+                android:clickable="true"
+                android:focusable="true" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:gravity="center"
-                android:orientation="vertical">
+            <TextView
+                android:layout_width="237dp"
+                android:layout_height="97dp"
+                android:fontFamily="@font/aclonica"
+                android:text="Liturgia"
+                android:textAlignment="center"
+                android:textColor="#0E1843"
+                android:textSize="30dp" />
+        </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
-                <Button
-                    android:id="@+id/imageButton2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/book"
-                    android:clickable="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:background="@color/bloody"
+            android:fadingEdge="horizontal|vertical"
+            android:fadingEdgeLength="10dp"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/VideoBtn3"
+                android:layout_width="173dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/cover"
+                android:clickable="true"
+                android:focusable="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/aclonica"
-                    android:text="Books"
-                    android:textAlignment="center"
-                    android:textColor="#0E1843"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <Button
-                    android:id="@+id/imageButton3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/cover"
-                    android:clickable="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/aclonica"
-                    android:text="Reports"
-                    android:textAlignment="center"
-                    android:textColor="#0E1843"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-
+            <TextView
+                android:layout_width="237dp"
+                android:layout_height="97dp"
+                android:fontFamily="@font/aclonica"
+                android:text="Texting"
+                android:textAlignment="center"
+                android:textColor="#0E1843"
+                android:textSize="30dp" />
         </LinearLayout>
 
 
     </LinearLayout>
 
+
     <ImageView
         android:id="@+id/bgapp"
-        android:layout_width="526dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/todo"
         android:scaleType="fitXY"
         android:src="@drawable/bgappy"
         app:layout_constraintEnd_toEndOf="parent"
@@ -236,9 +196,9 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header"
+        android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:layout_gravity = "start"/>
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

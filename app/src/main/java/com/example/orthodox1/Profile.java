@@ -65,6 +65,8 @@ public class Profile extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+
+
         StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -72,6 +74,7 @@ public class Profile extends AppCompatActivity {
                 Picasso.get().load(uri).into(profileImage);
             }
         });
+
 
         resendCode = findViewById(R.id.resendCode);
         verifyMsg = findViewById(R.id.verifyMsg);
@@ -179,11 +182,7 @@ public class Profile extends AppCompatActivity {
         if(requestCode == 1000){
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri = data.getData();
-
-                //profileImage.setImageURI(imageUri);
-
                 uploadImageToFirebase(imageUri);
-
 
             }
         }

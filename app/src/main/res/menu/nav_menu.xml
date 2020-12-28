@@ -4,7 +4,7 @@
         <menu>
             <item
                 android:id="@+id/UserProfile"
-                android:title="Profile"></item>
+                android:title="Profile" />
             <item
                 android:id="@+id/UserLanguages"
                 android:title="Languages" />
@@ -17,7 +17,7 @@
             <item
                 android:id="@+id/rating"
                 android:icon="@android:drawable/btn_star_big_on"
-                android:title="Rate App"></item>
+                android:title="Rate App" />
             <item
                 android:id="@+id/shareapp"
                 android:icon="?attr/actionModeShareDrawable"
@@ -30,7 +30,7 @@
             <item
                 android:id="@+id/logout"
                 android:icon="@android:drawable/ic_lock_power_off"
-                android:title="Logout"></item>
+                android:title="Logout" />
         </menu>
     </item>
 </menu>

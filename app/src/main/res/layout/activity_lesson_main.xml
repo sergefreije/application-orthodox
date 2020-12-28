@@ -9,28 +9,55 @@
 
     <Button
         android:id="@+id/lessons_main_startB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="188dp"
-        android:background="@color/design_default_color_error"
-        android:text="Start"
-        android:textColor="@color/colorAccent"
+        android:layout_width="210dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="220dp"
+        android:background="@color/bloody"
+        android:text="Start Lectures"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lessons_main_Text" />
+
+    <Button
+        android:id="@+id/exercises_main_start"
+        android:layout_width="210dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="160dp"
+        android:background="@color/bloody"
+        android:text="Start Exercises"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lessons_main_startB" />
+
+    <Button
+        android:id="@+id/test_start"
+        android:layout_width="210dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="100dp"
+        android:background="@color/bloody"
+        android:text="Test yourself"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exercises_main_start" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="409dp"
         android:layout_height="250dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@color/bloody"
         app:layout_constraintBottom_toTopOf="@+id/lessons_main_Text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -44,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Lesson 1"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="@color/common_google_signin_btn_text_dark_pressed"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -54,16 +81,17 @@
         android:id="@+id/lessons_main_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
         android:fontFamily="@font/annie_use_your_telescope"
-        android:text="ghggggggggggggggggggggggggggggggggggggggggggggggggg  hhhhhhh  hhnhnnhnhngg"
+        android:text="This lesson contains 2 videos and 2 execises"
         android:textAlignment="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.564" />
+        app:layout_constraintVertical_bias="0.367" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

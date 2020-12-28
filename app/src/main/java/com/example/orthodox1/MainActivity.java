@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         texthome = (LinearLayout) findViewById(R.id.texthome);
         menus = (LinearLayout) findViewById(R.id.menus);
 
-        bgapp.animate().translationY(-1900).setDuration(1300).setStartDelay(1000);
+        bgapp.animate().translationY(-2300).setDuration(1300).setStartDelay(1000);
         clover.animate().alpha(0).setDuration(1000).setStartDelay(1000);
         textsplash.animate().translationY(140).alpha(0).setDuration(1300).setStartDelay(950);
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    public void message (View view){
+    public void message(){
         Toast.makeText(this, "you have clicked the image", Toast.LENGTH_SHORT).show();
     }
 
@@ -167,4 +167,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
 
     }
-}
+
+    public void message(View view) {
+    }}

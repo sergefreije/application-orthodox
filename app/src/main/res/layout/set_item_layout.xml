@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="100dp"
     android:layout_height="100dp"
-    android:gravity="center"
     android:layout_margin="16dp"
     android:background="@drawable/circular_button"
-    android:backgroundTint="#FFC3C3"
-    >
+    android:backgroundTint="@color/bloody"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/setNo_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="40sp"/>
+        android:text="@string/_1"
+        android:textColor="@android:color/background_light"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

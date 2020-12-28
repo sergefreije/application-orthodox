@@ -2,6 +2,7 @@ package com.example.orthodox1;
 
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -40,6 +41,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseFirestore firestore;
     private int setNo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,71 +66,60 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         setNo = getIntent().getIntExtra("SETNO", 1);
         firestore = FirebaseFirestore.getInstance();
-
-        Intent LessonMain = new Intent(QuestionActivity.this, LessonMainActivity.class);
-        startActivity(LessonMain);
-
         getQuestionsList();
-
         score = 0;
-
     }
 
     private void getQuestionsList() {
         questionList.clear();
 
         //if (LanguageVersion != null & UserLevel != null) {
-        firestore.collection("Arabic").document("Level 1").collection("Lesson" + String.valueOf(setNo))
-                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+        firestore.collection("Arabic").document("Level 1").collection("Lesson" + setNo)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                    Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
+                Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
 
-                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        docList.put(doc.getId(), doc);
-                    }
-                    QueryDocumentSnapshot quesListDoc = docList.get("QUESTIONS_LIST");
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    docList.put(doc.getId(), doc);
+                }
+                QueryDocumentSnapshot quesListDoc = docList.get("QUESTIONS_LIST");
 
-                    assert quesListDoc != null;
-                    String count = quesListDoc.getString("COUNT");
+                assert quesListDoc != null;
+                String count = quesListDoc.getString("COUNT");
 
-                    assert count != null;
-                    for (int i = 0; i < Integer.parseInt(count); i++) {
-                        String quesID = ("Question" + (i + 1));
+                assert count != null;
+                for (int i = 0; i < Integer.parseInt(count); i++) {
+                    String quesID = ("Question" + (i + 1));
 
-                        QueryDocumentSnapshot quesDoc = docList.get(quesID);
+                    QueryDocumentSnapshot quesDoc = docList.get(quesID);
 
-                        assert quesDoc != null;
-                        questionList.add(new Question(
-                                quesDoc.getString("QUESTION"),
-                                quesDoc.getString("A"),
-                                quesDoc.getString("B"),
-                                quesDoc.getString("C"),
-                                quesDoc.getString("D"),
-                                Integer.parseInt(Objects.requireNonNull(quesDoc.getString("ANSWER")))
-                        ));
-
-                    }
-
-                    setQuestion();
+                    assert quesDoc != null;
+                    questionList.add(new Question(
+                            quesDoc.getString("QUESTION"),
+                            quesDoc.getString("A"),
+                            quesDoc.getString("B"),
+                            quesDoc.getString("C"),
+                            quesDoc.getString("D"),
+                            Integer.parseInt(Objects.requireNonNull(quesDoc.getString("ANSWER")))
+                    ));
 
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(QuestionActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
-        }
-  //  }
+                setQuestion();
 
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(QuestionActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-
-    private void setQuestion()
-    {
+                    }
+                });
+    }
+    private void setQuestion() {
         timer.setText(String.valueOf(10));
 
         question.setText(questionList.get(0).getQuestion());
@@ -138,15 +129,33 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         option4.setText(questionList.get(0).getOptionD());
 
 
-        qCount.setText((1) + "/" + (questionList.size()));
+        qCount.setText(1 + "/" + questionList.size());
 
-
+        startTimer();
 
         quesNum = 0;
 
     }
 
+    private void startTimer() {
+        countDown = new CountDownTimer(120000, 10000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(millisUntilFinished < 10000)
+                    timer.setText(String.valueOf(millisUntilFinished / 1000));
+            }
 
+            @Override
+            public void onFinish() {
+                changeQuestion();
+            }
+        };
+
+        countDown.start();
+
+    }
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 
@@ -173,6 +182,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             default:
         }
 
+        countDown.cancel();
         checkAnswer(selectedOption, v);
 
     }
@@ -217,15 +227,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             public void run() {
                 changeQuestion();
             }
-        }, 2000);
+        }, 500);
 
 
 
     }
 
 
-    private void changeQuestion()
-    {
+    private void changeQuestion() {
         if( quesNum < questionList.size() - 1)
         {
             quesNum++;
@@ -236,15 +245,17 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             playAnim(option3,0,3);
             playAnim(option4,0,4);
 
-            qCount.setText(String.valueOf(quesNum+1) + "/" + String.valueOf(questionList.size()));
+            qCount.setText((quesNum + 1) + "/" + questionList.size());
 
+            timer.setText(String.valueOf(10));
+            startTimer();
 
         }
         else
         {
             // Go to Score Activity
             Intent intent = new Intent(QuestionActivity.this,ScoreActivity.class);
-            intent.putExtra("SCORE", String.valueOf(score) + "/" + String.valueOf(questionList.size()));
+            intent.putExtra("SCORE", score + "/" + questionList.size());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             //QuestionActivity.this.finish();
@@ -254,8 +265,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void playAnim(final View view, final int value, final int viewNum)
-    {
+    private void playAnim(final View view, final int value, final int viewNum) {
 
         view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500)
                 .setStartDelay(100).setInterpolator(new DecelerateInterpolator())
@@ -291,7 +301,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
 
                             if(viewNum != 0)
-                                ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E99C03")));
+                                ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#920359")));
 
 
                             playAnim(view,1,viewNum);
@@ -317,5 +327,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     public void onBackPressed() {
         super.onBackPressed();
 
+        countDown.cancel();
     }
 }

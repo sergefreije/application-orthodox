@@ -1,4 +1,3 @@
-
 package com.example.orthodox1;
 
 import android.content.Intent;
@@ -19,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import javax.annotation.Nullable;
 
-public class LessonVideo extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+public class ExerciseVideos  extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private final String GOOGLE_API_KEY = "AIzaSyD9yQqmhWtbml6zAXmg4lJ121YJCGiplsg";
     Button NextVid;
@@ -27,12 +26,11 @@ public class LessonVideo extends YouTubeBaseActivity implements YouTubePlayer.On
     private String VideoId;
     public static int i;
     public static String  count;
-    public static String  played = "NO";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lesson_video);
+        setContentView(R.layout.activity_exercise_video);
         fStore = FirebaseFirestore.getInstance();
         NextVid = findViewById(R.id.Next);
         int setNo = getIntent().getIntExtra("SETNO", 1);
@@ -40,7 +38,7 @@ public class LessonVideo extends YouTubeBaseActivity implements YouTubePlayer.On
 
 
         DocumentReference documentReference = fStore.collection("Arabic").document("Level 1")
-                .collection("Lesson" + setNo).document("Video_LIST");
+                .collection("Lesson" + setNo).document("Exercises_LIST");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable final DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -53,7 +51,7 @@ public class LessonVideo extends YouTubeBaseActivity implements YouTubePlayer.On
                         VideoId = documentSnapshot.getString(VideoID);
 
                         YouTubePlayerView youtubePlayerView = (YouTubePlayerView) findViewById(R.id.mPlayer);
-                        youtubePlayerView.initialize(GOOGLE_API_KEY, LessonVideo.this);
+                        youtubePlayerView.initialize(GOOGLE_API_KEY, ExerciseVideos.this);
 
                         NextVid.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -62,18 +60,18 @@ public class LessonVideo extends YouTubeBaseActivity implements YouTubePlayer.On
                                 i++;
                                 String VideoID = ("VideoLink" + (i + 1));
                                 VideoId = documentSnapshot.getString(VideoID);
-                                Intent LessonMain = new Intent(LessonVideo.this, LessonVideo.class);
+                                Intent LessonMain = new Intent(ExerciseVideos.this, LessonVideo.class);
                                 YouTubePlayerView youtubePlayerView = (YouTubePlayerView) findViewById(R.id.mPlayer);
-                                youtubePlayerView.initialize(GOOGLE_API_KEY, LessonVideo.this);
+                                youtubePlayerView.initialize(GOOGLE_API_KEY, ExerciseVideos.this);
                                 startActivity(LessonMain);
                                 finish();
                             }
                         });
                     } else {
-                        Toast.makeText(LessonVideo.this, "The video is not Ready yet", Toast.LENGTH_SHORT);
                         finish();
                     }
                 } else {
+                    Toast.makeText(ExerciseVideos.this, "No Video was found!", Toast.LENGTH_SHORT);
                     finish();
                 }
 

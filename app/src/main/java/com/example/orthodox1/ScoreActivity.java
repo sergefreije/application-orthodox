@@ -11,16 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ScoreActivity extends AppCompatActivity {
 
-    private TextView score;
-    private Button done;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        score = findViewById(R.id.sa_score);
-        done = findViewById(R.id.sa_done);
+        TextView score = findViewById(R.id.sa_score);
+        Button done = findViewById(R.id.sa_done);
 
         String score_str = getIntent().getStringExtra("SCORE");
         score.setText(score_str);
