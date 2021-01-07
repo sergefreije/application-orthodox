@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ExerciseVideos" />
+        <activity android:name=".PDF" />
         <activity android:name=".ScoreActivity" />
         <activity android:name=".registerExtraInfo" />
         <activity android:name=".Languages" />

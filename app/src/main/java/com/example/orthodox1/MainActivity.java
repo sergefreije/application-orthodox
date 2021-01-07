@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseFirestore fStore;
     String userId;
     TextView firstName;
-    Button videoBtn;
-
+    Button videoBtn, videoBtn2;
     ImageView bgapp, clover;
     LinearLayout textsplash, texthome, menus;
     Animation frombottom;
@@ -104,6 +103,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
+        videoBtn2 = findViewById(R.id.VideoBtn2);
+        videoBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent VideoContent1 = new Intent(MainActivity.this, PDF.class);
+                startActivity(VideoContent1);
+            }
+        });
 
         videoBtn = findViewById(R.id.VideoBtn);
         videoBtn.setOnClickListener(new View.OnClickListener() {

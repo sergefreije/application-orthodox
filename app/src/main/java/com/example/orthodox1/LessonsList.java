@@ -24,7 +24,7 @@ public class LessonsList extends AppCompatActivity {
 
     private GridView sets_grid;
     private FirebaseFirestore firestore;
-     public static String userId,Language,Level;
+    public static String userId,Language,Level;
     FirebaseAuth fAuth;
     final public static List<String> setsIDs = new ArrayList<>();
 

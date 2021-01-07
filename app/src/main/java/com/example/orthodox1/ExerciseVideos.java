@@ -1,6 +1,5 @@
 package com.example.orthodox1;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,59 +18,39 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import javax.annotation.Nullable;
 
 public class ExerciseVideos  extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
-
+    int setNo;
     private final String GOOGLE_API_KEY = "AIzaSyD9yQqmhWtbml6zAXmg4lJ121YJCGiplsg";
     Button NextVid;
     FirebaseFirestore fStore;
     private String VideoId;
-    public static int i;
-    public static String  count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise_video);
+        setContentView(R.layout.activity_lesson_video);
         fStore = FirebaseFirestore.getInstance();
         NextVid = findViewById(R.id.Next);
-        int setNo = getIntent().getIntExtra("SETNO", 1);
-
-
+        setNo = getIntent().getIntExtra("SETNO", 1);
 
         DocumentReference documentReference = fStore.collection("Arabic").document("Level 1")
-                .collection("Lesson" + setNo).document("Exercises_LIST");
+                .collection("Lesson "+ setNo).document("Lesson");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable final DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot.exists()) {
-                    count = documentSnapshot.getString("COUNT");
+                    VideoId  = documentSnapshot.getString("ExerciseVideo");
 
-                    if (i < Integer.parseInt(count)) {
+                    YouTubePlayerView youtubePlayerView = (YouTubePlayerView) findViewById(R.id.mPlayer);
+                    youtubePlayerView.initialize(GOOGLE_API_KEY, ExerciseVideos.this);
 
-                        String VideoID = ("VideoLink" + (i + 1));
-                        VideoId = documentSnapshot.getString(VideoID);
-
-                        YouTubePlayerView youtubePlayerView = (YouTubePlayerView) findViewById(R.id.mPlayer);
-                        youtubePlayerView.initialize(GOOGLE_API_KEY, ExerciseVideos.this);
-
-                        NextVid.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                i++;
-                                String VideoID = ("VideoLink" + (i + 1));
-                                VideoId = documentSnapshot.getString(VideoID);
-                                Intent LessonMain = new Intent(ExerciseVideos.this, LessonVideo.class);
-                                YouTubePlayerView youtubePlayerView = (YouTubePlayerView) findViewById(R.id.mPlayer);
-                                youtubePlayerView.initialize(GOOGLE_API_KEY, ExerciseVideos.this);
-                                startActivity(LessonMain);
-                                finish();
-                            }
-                        });
-                    } else {
-                        finish();
-                    }
+                    NextVid.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    });
                 } else {
-                    Toast.makeText(ExerciseVideos.this, "No Video was found!", Toast.LENGTH_SHORT);
+                    Toast.makeText(ExerciseVideos.this, "The video is not Ready yet", Toast.LENGTH_SHORT);
                     finish();
                 }
 
